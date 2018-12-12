@@ -1,12 +1,20 @@
 def reformat_languages(languages)
-  new_hash = languages.values
-  new_hash[0].keys.each do |lang| 
-    new_hash[0][lang][:style] = [languages.keys[0]]
-  end
-  new_hash[1].keys.each do |lang| 
-    new_hash[1][lang][:style] = [languages.keys[1]]
-  end
   
+  new_hash = languages.values
+  
+  # new_hash[0].keys.each do |lang| 
+  #   new_hash[0][lang][:style] = [languages.keys[0]]
+  # end
+  # new_hash[1].keys.each do |lang| 
+  #   new_hash[1][lang][:style] = [languages.keys[1]]
+  # end
+  
+  new_hash.each_with_index do |hash, idx|
+    hash.keys.each do |lang|
+      hash[lang][:style] = [languages.keys[idx]]
+    end
+  end
+
   style_array = []
   (new_hash[0].keys & new_hash[1].keys).each do |item|
     style_array << new_hash[0][item][:style]
